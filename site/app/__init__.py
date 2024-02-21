@@ -7,7 +7,7 @@ from .views import views
 from .api import api
 from .models.user import User
 from .models.todo import Todo
-    
+
 # initialize SQLAlchemy object to
 # communication with database
 db = SQLAlchemy()

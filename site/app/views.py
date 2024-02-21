@@ -1,7 +1,7 @@
 """ module used to create routes for web aoolication """
+import json
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
-import json
 from .validators.validators import Validator
 from .controllers import user_controller as uc
 from .controllers import todo_controller as tc

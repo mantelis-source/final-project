@@ -18,4 +18,9 @@ jobs:
               name: 'Checkout repo'
             - name: 'Install dependencies'
               run: |
-                echo 'Veikia'
+                python -m pip install --upgrade pip
+                pip install pylint
+            - name: 'Test python code with pylint'
+              working-directory: ./site
+              run: |
+                pylint app/*.py

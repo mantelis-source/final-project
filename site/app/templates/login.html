@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Login page{% endblock %}
+{% block page_content %}
+
+<div class="form-wraper">
+    <div class="form-block">
+        <form action="" method="post">
+            <h1>Login</h1>
+            <div class="input-box">
+                <label for="username">Username:</label>
+                <input type="text" name="username" required>
+                <i class='bx bxs-user-circle'></i>
+            </div>
+            <div class="input-box">
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <i class='bx bxs-lock-open'></i>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="register-link">
+                <p>Do not have an account? <a href="{{ url_for('views.register') }}">Register</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

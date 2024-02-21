@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}Register page{% endblock %}
+{% block page_content %}
+
+<div class="form-wraper">
+    <div class="form-block">
+        <form action="" method="post">
+            <h1>Registration form</h1>
+            <div class="input-box">
+                <label for="first_name">First name:</label>
+                <input type=" text" name="first_name" value="{{ user_data['first_name'] }}" required>
+            </div>
+            <div class="input-box">
+                <label for="lirst_name">Last name:</label>
+                <input type="text" name="last_name" value="{{ user_data['last_name'] }}" required>
+            </div>
+            <div class="input-box">
+                <label for="username">Username:</label>
+                <input type="text" name="username" value="{{ user_data['username'] }}" required>
+            </div>
+            <div class="input-box">
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+            </div>
+            <div class="input-box">
+                <label for="password_to_match">Password:</label>
+                <input type="password" name="password_to_match" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

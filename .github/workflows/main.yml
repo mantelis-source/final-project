@@ -1,0 +1,21 @@
+name: Final project workflow
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+defaults:
+    run:
+        shell: bash
+jobs:
+    lint-code:
+        name: 'Linting code'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              name: 'Checkout repo'
+            - name: 'Install dependencies'
+              run: |
+                echo 'Veikia'

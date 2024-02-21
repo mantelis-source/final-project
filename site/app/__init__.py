@@ -3,10 +3,6 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
-from .views import views
-from .api import api
-from .models.user import User
-from .models.todo import Todo
 
 # initialize SQLAlchemy object to
 # communication with database
@@ -20,10 +16,14 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{DB}'
     db.init_app(app)
 
+    from .views import views
+    from .api import api
     # register blueprints
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(api, url_prefix="/")
 
+    from .models.user import User
+    from .models.todo import Todo
     # creating database schema
     with app.app_context():
         db.create_all()

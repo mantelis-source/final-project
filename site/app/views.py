@@ -6,6 +6,7 @@ from .validators.validators import Validator
 from .controllers import user_controller as uc
 from .controllers import todo_controller as tc
 
+
 # create blueprint
 views = Blueprint('views', __name__)
 # create validator

@@ -1,13 +1,14 @@
+""" module used to create routes for web aoolication """
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
+from flask_login import login_user, login_required, logout_user, current_user
+import json
 from .validators.validators import Validator
 from .controllers import user_controller as uc
 from .controllers import todo_controller as tc
-from flask_login import login_user, login_required, logout_user, current_user
-import json
 
 # create blueprint
 views = Blueprint('views', __name__)
-# create validator 
+# create validator
 validator = Validator()
 
 @views.route("/", methods = ["GET", "POST"])
@@ -35,7 +36,7 @@ def login():
                 flash(error, category="error")
             return redirect(url_for("views.login"))
         # if user provided data valid - get user from database and
-        # register ir to flask 
+        # register ir to flask
         user = uc.login_user(username, password)
         login_user(user)
         return redirect(url_for("views.index"))
@@ -79,7 +80,7 @@ def remove_todo():
     """ method to remove to-do by id from database """
     data = json.loads(request.data)
     todo_id = data["itemId"]
-    
+
     if tc.remove_todo(todo_id):
         return jsonify(success=True)
     return jsonify(success=False)
@@ -89,7 +90,7 @@ def update_todo():
     """ method to update to-do by id in database """
     data = json.loads(request.data)
     todo_id = data["itemId"]
-    
+
     if tc.update_todo(todo_id):
         return jsonify(success=True)
     return jsonify(success=False)

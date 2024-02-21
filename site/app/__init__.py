@@ -11,7 +11,7 @@ from .api import api
 db = SQLAlchemy()
 DB = "my.db"
 
-def createApp():
+def create_app():
     """ using onw method to create application"""
     app = Flask(__name__)
     app.config["SECRET_KEY"] = "sdfsdfs"

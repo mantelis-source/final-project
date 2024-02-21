@@ -1,5 +1,6 @@
+""" module used to create api routes and action with routes """
 from functools import wraps
-from flask import Blueprint, jsonify, request, make_response
+from flask import Blueprint, jsonify, request
 import jwt
 
 from .validators.validators import Validator
@@ -8,9 +9,9 @@ from .controllers import user_controller as uc
 
 # create blueprint
 api = Blueprint('api', __name__)
-# create validator 
+# create validator
 validator = Validator()
-secret = "Secret"
+SECRET = "Secret"
 
 # variable to save default response messages
 errors = {
@@ -28,7 +29,7 @@ errors = {
 def response_maker(message_id, status, opt_key=None, opt_value=None):
     """ method used to create response message """
     if opt_key:
-        return jsonify({ "Message": errors[str(message_id)], str(opt_key):str(opt_value) }, status)    
+        return jsonify({ "Message": errors[str(message_id)], str(opt_key):str(opt_value) }, status)
     return jsonify({ "Message": errors[str(message_id)] }, status)
 
 def token_validation(func):
@@ -38,21 +39,21 @@ def token_validation(func):
         token = None
         if not "auth-token" in request.headers:
             return response_maker(0, 406)
-            
+
         token = request.headers["auth-token"]
-        
+
         try:
             # token - token from client
             # secret_key - secret key for algorithm
             # algorithms - decoding algorithm - must match the algorithm used to encode.
-            # Decode algorithms is a list of algorithms. Algoritms must be passed to decode method 
-            data = jwt.decode(token, secret, algorithms=["HS256"])
+            # Decode algorithms is a list of algorithms. Algoritms must be passed to decode method
+            data = jwt.decode(token, SECRET, algorithms=["HS256"])
             user_by_token = uc.get_user_by_username(data["user"])
             if not user_by_token:
                 response_maker(1, 401)
         except:
             return response_maker(2, 401)
-        
+
         return func(user_by_token, *args, **kwargs)
     return decorated
 
@@ -93,12 +94,12 @@ def login():
     # exp - expire time (if needed)
     # secret_key - secret key for algorithm
     # algorithm - encoding algorithm (default HS256)
-    
+
     # if data valid - return user token
-    token = jwt.encode({"user": username}, secret)
+    token = jwt.encode({"user": username}, SECRET)
     return response_maker(3, 200, "token", token)
 # CRUD operations with to-do items
-# C - Create to-do 
+# C - Create to-do
 @api.route("/api/v1/add_todo", methods = ["POST"])
 @token_validation
 def add_todo(user_by_token):
@@ -118,7 +119,8 @@ def get_todo_list(user_by_token):
 def update_todo_status(user_by_token):
     """ Update to-do list item by id - API route """
     todo_id = request.get_json()["todo_id"]
-    if not tc.update_todo(todo_id):     # Maybe we can test, if todo belongs to user, who's removing it. (user.id == todo.user_id)
+    # Maybe we can test, if todo belongs to user, who's removing it. (user.id == todo.user_id)
+    if not tc.update_todo(todo_id):
         return response_maker(5, 404)
     return response_maker(4, 200)
 # D - Remove to-do by its id
@@ -127,6 +129,7 @@ def update_todo_status(user_by_token):
 def remove_todo(user_by_token):
     """ Remove to-do item by id - API route """
     todo_id = request.get_json()["todo_id"]
-    if not tc.remove_todo(todo_id):     # Maybe we can test, if todo belongs to user, who's removing it. (user.id == todo.user_id)
+    # Maybe we can test, if todo belongs to user, who's removing it. (user.id == todo.user_id)
+    if not tc.remove_todo(todo_id):
         return response_maker(5, 404)
     return response_maker(6, 200)

@@ -13,6 +13,8 @@ RUN pip install --upgrade pip \
     # bcrypt for encryption
     bcrypt \
     # pyJWT using for api to encode and decode token
-    pyJWT
+    pyJWT \
+    # boto3 using to retrieve secrets from aws secrets manager
+    boto3
 EXPOSE 80
 CMD [ "flask", "run", "--host", "0.0.0.0", "--port", "80" ]

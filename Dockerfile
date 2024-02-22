@@ -17,4 +17,4 @@ RUN pip install --upgrade pip \
     # boto3 using to retrieve secrets from aws secrets manager
     boto3
 EXPOSE 80
-CMD [ "flask", "run", "--host", "0.0.0.0", "--port", "80" ]
+#CMD [ "flask", "run", "--host", "0.0.0.0", "--port", "80" ]

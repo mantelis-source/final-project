@@ -20,7 +20,7 @@ class Validator():
         errors = []
         user = User.query.filter_by(username=username).first()
         if user:
-            if bcrypt.checkpw(str(password).encode("utf-8"), user.password):
+            if bcrypt.checkpw(str(password).encode("utf-8"), str(user.password).encode("utf-8")):
                 return errors
             else:
                 errors.append("Wrong password.")

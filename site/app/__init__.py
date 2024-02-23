@@ -20,7 +20,7 @@ def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = aws_secrets['flask_secret_key']
     app.config["SQLALCHEMY_DATABASE_URI"] = \
-    f'mysql+pymysql://{aws_secrets['db_username']}:{aws_secrets['db_password']}@final-project-db-instance.ct0okikic8jc.eu-central-1.rds.amazonaws.com:/FinalProject'
+    f'mysql+pymysql://{aws_secrets['db_username']}:{aws_secrets['db_password']}@{aws_secrets['db_host']}/{aws_secrets['db_name']}'
     db.init_app(app)
 
     from .views import views

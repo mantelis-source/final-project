@@ -17,8 +17,8 @@ def register_user(user_info):
     hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
     
     user = User(str(uuid.uuid4()),
-                user_info["first_name"], 
-                user_info["last_name"], 
+                user_info["first_name"],
+                user_info["last_name"],
                 user_info["username"],
                 hashed_password)
     

@@ -21,7 +21,7 @@ def create_app():
     app.config["SECRET_KEY"] = "sfdsfsfsfs" # aws_secrets['flask_secret_key']
 #    app.config["SQLALCHEMY_DATABASE_URI"] = \
 #    f'mysql+pymysql://{aws_secrets['db_username']}:{aws_secrets['db_password']}@{aws_secrets['db_host']}/{aws_secrets['db_name']}'
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///my.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////my.db"
     db.init_app(app)
 
     from .views import views

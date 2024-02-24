@@ -1,23 +1,23 @@
 # 
 FROM python:slim-bullseye
 WORKDIR /final-project
+COPY /site /final-project
 ENV FLASK_APP="main.py"
 ENV FLASK_DEBUG=1
-COPY /site /final-project
-#RUN pip install --upgrade pip \ 
+RUN pip install --upgrade pip \ 
     # flask framework    
- #   pip install flask \
+    pip install flask \
     # flask login module for website       
- #   flask_login \ 
+    flask_login \ 
     # sql_alchemy module to communicate with DB
- #   flask_sqlalchemy \ 
+    flask_sqlalchemy \ 
     # bcrypt for encryption
- #   bcrypt \
+    bcrypt \
     # pyJWT using for api to encode and decode token
- #   pyJWT
+    pyJWT \
     # boto3 using to retrieve secrets from aws secrets manager
- #   boto3 \
+    boto3 \
     # 
- #   pymysql
+    pymysql
 EXPOSE 80
-#CMD [ "flask", "run", "--host", "0.0.0.0", "--port", "80" ]
+CMD [ "python", "main.py" ]

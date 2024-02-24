@@ -5,15 +5,15 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
-def get_secrets():
-    client = boto3.client('secretsmanager', region_name='eu-central-1')
-    response = client.get_secret_value(SecretId='db_creds')
-    secrets = json.loads(response['SecretString'])
-    return secrets
+#def get_secrets():
+#    client = boto3.client('secretsmanager', region_name='eu-central-1')
+#    response = client.get_secret_value(SecretId='db_creds')
+#    secrets = json.loads(response['SecretString'])
+#    return secrets
 # initialize SQLAlchemy object to
 # communication with database
 db = SQLAlchemy()
-aws_secrets = get_secrets()
+#aws_secrets = get_secrets()
 
 def create_app():
     """ using onw method to create application"""

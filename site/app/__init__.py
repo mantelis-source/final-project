@@ -12,7 +12,6 @@ def create_app():
     app.config["SECRET_KEY"] = os.getenv('flask_secret_key')
     app.config["SQLALCHEMY_DATABASE_URI"] = \
     f'mysql+pymysql://{os.getenv('db_username')}:{os.getenv('db_password')}@{os.getenv('db_host')}/{os.getenv('db_name')}'
-    #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///my.db"
     db.init_app(app)
 
     from .views import views

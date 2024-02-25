@@ -19,5 +19,5 @@ RUN pip install --upgrade pip \
     boto3 \
     # 
     pymysql
-EXPOSE 80 22
+EXPOSE 80
 CMD [ "python", "main.py" ]

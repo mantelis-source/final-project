@@ -23,7 +23,7 @@ jobs:
             - name: 'Test python code with pylint'
               working-directory: ./site
               run: |
-                pylint /app
+                pylint app/*.py
     build-publish-image:
         name: 'Build and publish final project image'
         runs-on: ubuntu-latest

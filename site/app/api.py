@@ -116,7 +116,7 @@ def get_todo_list(user_by_token):
 # U - Update to-do status by its id (make it done)
 @api.route("/api/v1/update_todo_status", methods = ["POST"])
 @token_validation
-def update_todo_status(user_by_token):
+def update_todo_status(user_by_token):#pylint: disable=W0613
     """ Update to-do list item by id - API route """
     todo_id = request.get_json()["todo_id"]
     # Maybe we can test, if todo belongs to user, who's removing it. (user.id == todo.user_id)
@@ -126,7 +126,7 @@ def update_todo_status(user_by_token):
 # D - Remove to-do by its id
 @api.route("/api/v1/remove_todo", methods = ["POST"])
 @token_validation
-def remove_todo(user_by_token):
+def remove_todo(user_by_token):#pylint: disable=W0613
     """ Remove to-do item by id - API route """
     todo_id = request.get_json()["todo_id"]
     # Maybe we can test, if todo belongs to user, who's removing it. (user.id == todo.user_id)

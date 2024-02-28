@@ -22,7 +22,7 @@ def create_app():
     app.register_blueprint(api, url_prefix="/")
 
     from .models.user import User #pylint:disable=C0415
-    from .models.todo import Todo #pylint:disable=C0611
+    from .models.todo import Todo #pylint:disable=W0611, C0415
     # creating database schema
     with app.app_context():
         db.create_all()

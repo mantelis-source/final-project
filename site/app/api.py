@@ -51,7 +51,7 @@ def token_validation(func):
             user_by_token = uc.get_user_by_username(data["user"])
             if not user_by_token:
                 response_maker(1, 401)
-        except:
+        except: #pylint:disable=W0702
             return response_maker(2, 401)
 
         return func(user_by_token, *args, **kwargs)
@@ -71,9 +71,9 @@ def register_user():
             "password_to_match":json_data["password_to_match"]
         }
     # check if data valid
-    errors = validator.validate_registration_data(user)
-    if len(errors) > 0:
-        return jsonify({ "user_registration_errors": errors }, 406)
+    error = validator.validate_registration_data(user)
+    if len(error) > 0:
+        return jsonify({ "user_registration_errors": error }, 406)
     # if data valid - add user to database
     uc.register_user(user)
     return response_maker(8, 200)
@@ -86,9 +86,9 @@ def login():
     password = json_data["password"]
 
     # check if data valid
-    errors = validator.validate_login_data(username, password)
-    if len(errors) > 0:
-        return jsonify({ "error": errors })
+    error = validator.validate_login_data(username, password)
+    if len(error) > 0:
+        return jsonify({ "error": error })
     # jwt.encode({ "payload": payload, "exp": expire_time }, secret_key, algorithm="")
     # payload - user identification
     # exp - expire time (if needed)

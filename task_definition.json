@@ -1,5 +1,7 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-central-1:744445457753:task-definition/staging_ecs:47",
+    "family": "staging_ecs",
+    "executionRoleArn": "arn:aws:iam::744445457753:role/ecsTaskExecutionRole",
+    
     "containerDefinitions": [
         {
             "name": "final-project-container",
@@ -16,10 +18,6 @@
                     "protocol": "tcp"
                 }
             ],
-            "essential": true,
-            "environment": [],
-            "mountPoints": [],
-            "volumesFrom": [],
             "secrets": [
                 {
                     "name": "db_username",
@@ -52,47 +50,5 @@
             },
             "systemControls": []
         }
-    ],
-    "family": "staging_ecs",
-    "executionRoleArn": "arn:aws:iam::744445457753:role/ecsTaskExecutionRole",
-    "networkMode": "awsvpc",
-    "revision": 47,
-    "volumes": [],
-    "status": "ACTIVE",
-    "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "ecs.capability.execution-role-awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "ecs.capability.secrets.asm.environment-variables"
-        },
-        {
-            "name": "ecs.capability.private-registry-authentication.secretsmanager"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "ecs.capability.task-eni"
-        }
-    ],
-    "placementConstraints": [],
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "cpu": "512",
-    "memory": "2048",
-    "registeredAt": "2024-03-03T09:58:32.436Z",
-    "registeredBy": "arn:aws:iam::744445457753:user/DevOps-user_1",
-    "tags": []
+    ]
 }

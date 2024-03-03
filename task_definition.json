@@ -1,5 +1,6 @@
 {
     "family": "staging_ecs",
+    "execution_role_arn": "arn:aws:iam::744445457753:role/ecsTaskExecutionRole",
     "containerDefinitions": [
         {
             "name": "final-project-container",

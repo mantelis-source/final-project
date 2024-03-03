@@ -1,8 +1,8 @@
 """ module used to create api routes and action with routes """
+import os
 from functools import wraps
 from flask import Blueprint, jsonify, request
 import jwt
-import os
 
 from .validators.validators import Validator
 from .controllers import todo_controller as tc

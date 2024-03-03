@@ -1,47 +1,52 @@
 {
-    "name": "final-project-container",
-    "image": "mantelis900726/final-project-image:latest",
-    "repositoryCredentials": {
-        "credentialsParameter": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:github_creds-2GliDQ"
-    },
-    "cpu": 512,
-    "memory": 2048,
-    "essential": true,
-    "portMappings": [
+    "family": "staging_ecs",
+    "containerDefinitions": [
         {
-            "containerPort": 80,
-            "hostPort": 80,
-            "protocol": "tcp"
+            "name": "final-project-container",
+            "image": "mantelis900726/final-project-image:latest",
+            "repositoryCredentials": {
+                "credentialsParameter": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:github_creds-2GliDQ"
+            },
+            "cpu": 512,
+            "memory": 2048,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "secrets": [
+                {
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_username::",
+                    "name": "db_username"
+                },
+                {
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_password::",
+                    "name": "db_password"
+                },
+                {
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_host::",
+                    "name": "db_host"
+                },
+                {
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_name::",
+                    "name": "db_name"
+                },
+                {
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:flask_secret_key::",
+                    "name": "flask_secret_key"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "final-project",
+                    "awslogs-region": "eu-central-1",
+                    "awslogs-stream-prefix": "Staging environment"
+                }
+            }
         }
-    ],
-    "secrets": [
-        {
-            "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_username::",
-            "name": "db_username"
-        },
-        {
-            "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_password::",
-            "name": "db_password"
-        },
-        {
-            "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_host::",
-            "name": "db_host"
-        },
-        {
-            "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_name::",
-            "name": "db_name"
-        },
-        {
-            "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:flask_secret_key::",
-            "name": "flask_secret_key"
-        }
-    ],
-    "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-            "awslogs-group": "final-project",
-            "awslogs-region": "eu-central-1",
-            "awslogs-stream-prefix": "Staging environment"
-        }
-    }
+    ]
 }

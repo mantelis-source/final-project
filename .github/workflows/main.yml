@@ -32,6 +32,7 @@ jobs:
     build-publish-image:
         name: 'Build and publish final project image'
         runs-on: ubuntu-latest
+        needs: lint-code
         steps:
           - name: 'Checkout reposiroty'
             uses: actions/checkout@v4
@@ -46,6 +47,7 @@ jobs:
     aws_ecs_task_definition:
         name: 'Change task definition'
         runs-on: ubuntu-latest
+        needs: build-publish-image
         steps:
           - name: 'Checkout repository'
             uses: actions/checkout@v4

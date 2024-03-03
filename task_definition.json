@@ -5,6 +5,8 @@
         "FARGATE"
     ],
     "networkMode": "awsvpc",
+    "cpu": "512",
+    "memory": "2048",
 
     "containerDefinitions": [
         {

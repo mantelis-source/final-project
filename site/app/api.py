@@ -2,6 +2,7 @@
 from functools import wraps
 from flask import Blueprint, jsonify, request
 import jwt
+import os
 
 from .validators.validators import Validator
 from .controllers import todo_controller as tc
@@ -11,7 +12,7 @@ from .controllers import user_controller as uc
 api = Blueprint('api', __name__)
 # create validator
 validator = Validator()
-SECRET = "Secret"
+SECRET = os.getenv('flask_secret_key')
 
 # variable to save default response messages
 errors = {

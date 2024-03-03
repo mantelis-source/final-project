@@ -4,6 +4,7 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
+    "networkMode": "awsvpc",
 
     "containerDefinitions": [
         {

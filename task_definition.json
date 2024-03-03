@@ -1,6 +1,5 @@
 {
-    "family": "staging_ecs",
-    "execution_role_arn": "arn:aws:iam::744445457753:role/ecsTaskExecutionRole",
+    "taskDefinitionArn": "arn:aws:ecs:eu-central-1:744445457753:task-definition/staging_ecs:47",
     "containerDefinitions": [
         {
             "name": "final-project-container",
@@ -10,7 +9,6 @@
             },
             "cpu": 512,
             "memory": 2048,
-            "essential": true,
             "portMappings": [
                 {
                     "containerPort": 80,
@@ -18,26 +16,30 @@
                     "protocol": "tcp"
                 }
             ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
             "secrets": [
                 {
-                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_username::",
-                    "name": "db_username"
+                    "name": "db_username",
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_username::"
                 },
                 {
-                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_password::",
-                    "name": "db_password"
+                    "name": "db_password",
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_password::"
                 },
                 {
-                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_host::",
-                    "name": "db_host"
+                    "name": "db_host",
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_host::"
                 },
                 {
-                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_name::",
-                    "name": "db_name"
+                    "name": "db_name",
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:db_name::"
                 },
                 {
-                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:flask_secret_key::",
-                    "name": "flask_secret_key"
+                    "name": "flask_secret_key",
+                    "valueFrom": "arn:aws:secretsmanager:eu-central-1:744445457753:secret:db_creds-5aPXeO:flask_secret_key::"
                 }
             ],
             "logConfiguration": {
@@ -47,7 +49,50 @@
                     "awslogs-region": "eu-central-1",
                     "awslogs-stream-prefix": "Staging environment"
                 }
-            }
+            },
+            "systemControls": []
         }
-    ]
+    ],
+    "family": "staging_ecs",
+    "executionRoleArn": "arn:aws:iam::744445457753:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 47,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "ecs.capability.secrets.asm.environment-variables"
+        },
+        {
+            "name": "ecs.capability.private-registry-authentication.secretsmanager"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "512",
+    "memory": "2048",
+    "registeredAt": "2024-03-03T09:58:32.436Z",
+    "registeredBy": "arn:aws:iam::744445457753:user/DevOps-user_1",
+    "tags": []
 }

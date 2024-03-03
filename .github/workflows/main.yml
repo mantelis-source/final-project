@@ -43,7 +43,7 @@ jobs:
           - name: 'Publish image'
             run: |
               docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
-    #          docker push mantelis900726/final-project-image:latest
+              docker push mantelis900726/final-project-image:latest
     aws_ecs_task_definition:
         name: 'Change task definition'
         runs-on: ubuntu-latest

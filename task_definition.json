@@ -1,7 +1,10 @@
 {
     "family": "staging_ecs",
     "executionRoleArn": "arn:aws:iam::744445457753:role/ecsTaskExecutionRole",
-    
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+
     "containerDefinitions": [
         {
             "name": "final-project-container",
@@ -47,8 +50,7 @@
                     "awslogs-region": "eu-central-1",
                     "awslogs-stream-prefix": "Staging environment"
                 }
-            },
-            "systemControls": []
+            }
         }
     ]
 }
